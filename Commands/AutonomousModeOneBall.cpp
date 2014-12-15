@@ -14,14 +14,16 @@
 
 AutonomousModeOneBall::AutonomousModeOneBall()
 {
-  AddSequential(new AutonomousLowGearCommand());
-  AddSequential(new LoadCatapultGroup());
-  AddSequential(new OperatorLowCommand());
-  AddSequential(new AutonomousPickupCommand(2.0));
-  AddSequential(new OperatorPickup2Command());
-  AddSequential(new OperatorHighCommand());
+  
   AddSequential(new AutonomousDriveCommand(1.0f, TURN_CORRECTION, 2.2));
-  AddParallel(new OperatorPickup2Command(0.5));
-  AddSequential(new AutonomousCoastCommand(1.0f, TURN_CORRECTION, 0.0f, TURN_CORRECTION, 0.5));
-  AddSequential(new DriveLaunchReleaseCommand());
+  AddSequential(new AutonomousDriveCommand(0.0f, TURN_CORRECTION, 0));
+  wait 2;
+  AddSequential(new AutonomousDriveCommand(1.0f, 1.0, 0.2));
+  AddSequential(new AutonomousDriveCommand(1.0f, TURN_CORRECTION, 2.2));
+  AddSequential(new AutonomousDriveCommand(0.0f, TURN_CORRECTION, 0));
+  wait 2;
+  AddSequential(new AutonomousDriveCommand(1.0f, TURN_CORRECTION, 2.2));
+  AddSequential(new AutonomousDriveCommand(0.0f, TURN_CORRECTION, 0));
+  wait 2;
+  
 }
